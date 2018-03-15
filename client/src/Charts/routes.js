@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Charts from '.';
-import { LineChart } from './components';
+import LineChart from './LineChart';
 import RadarChart from './RadarChart'
 import ScatterChart from './ScatterChart'
 

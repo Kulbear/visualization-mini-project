@@ -184,7 +184,7 @@ class ScatterChart extends Component {
             city: 'Beijing',
             year: '2011',
             month: '1',
-            radarOption: getOpions(),
+            chartOption: getOpions(),
             ct: 0
         };
     }
@@ -237,7 +237,7 @@ class ScatterChart extends Component {
     handleClearAll = (e) => {
         e.preventDefault()
         this.setState({
-            radarOption: getOpions(),
+            chartOption: getOpions(),
             ct: 0
         })
         this.forceUpdate()
@@ -259,7 +259,7 @@ class ScatterChart extends Component {
             if (!data.city) {
                 throw Error()
             }
-            const thisOption = {...this.state.radarOption};
+            const thisOption = {...this.state.chartOption};
             
             if (thisOption.legend.data.length > 3) {
               thisOption.legend.data.shift()
@@ -273,7 +273,7 @@ class ScatterChart extends Component {
 
             this.setState({
                 loaded: true,
-                radarOption: thisOption,
+                chartOption: thisOption,
                 ct: this.state.ct + 1
             });
         })
@@ -289,7 +289,7 @@ class ScatterChart extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         City:
-                        <select name="year" onChange={this.handleCityChange}>
+                        <select name="city" onChange={this.handleCityChange}>
                             {this.generateCity()}
                         </select>
                     </label>
@@ -314,7 +314,7 @@ class ScatterChart extends Component {
             </div>
 
             <div className='chart'>
-                <ReactEcharts className='echart' ref='echartsInstance' option={this.state.radarOption} />
+                <ReactEcharts className='echart' ref='echartsInstance' option={this.state.chartOption} />
             </div>
         </div>
         );

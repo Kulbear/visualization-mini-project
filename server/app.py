@@ -25,10 +25,17 @@ class HelloWorld(Resource):
                 path = './radar_data/{}.json'.format(city.lower())
             elif tp == 'scatter':
                 path = './scatter_data/{}.json'.format(city.lower())
+            elif tp == 'line':
+                path = './line_data/{}.json'.format(city.lower())
             else:
                 path = '????'
             with open(path, 'r') as f:
                 data = json.load(f)
+            if tp == 'line':
+                return {
+                    'city': city,
+                    'data': data
+                    }
             return {
                 'city': city,
                 'data': data[year][month]

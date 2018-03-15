@@ -5,20 +5,8 @@ import ReactEcharts from 'echarts-for-react';
 
 import './chart.css'
 
-const getRandomColor = () => {
-    const colorList = []
-    for (let i = 0; i < 20; i++) {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        colorList.push(color);
-    }
-    return colorList
-}
 
-const colorList = getRandomColor()
+const colorList = ['#f9f9f9', '#fec42c', '#80F1BE', '#3463cc']
 
 const lineStyle = {
     normal: {
@@ -117,7 +105,7 @@ class RadarChart extends Component {
             city: 'Beijing',
             year: '2011',
             month: '1',
-            radarOption: getOpions(),
+            chartOption: getOpions(),
             ct: 0
         };
     }
@@ -170,7 +158,7 @@ class RadarChart extends Component {
     handleClearAll = (e) => {
         e.preventDefault()
         this.setState({
-            radarOption: getOpions(),
+            chartOption: getOpions(),
             ct: 0
         })
         this.forceUpdate()
@@ -192,8 +180,13 @@ class RadarChart extends Component {
             if (!data.city) {
                 throw Error()
             }
-            const thisOption = {...this.state.radarOption};
+            const thisOption = {...this.state.chartOption};
             
+            if (thisOption.legend.data.length > 3) {
+                thisOption.legend.data.shift()
+                thisOption.series.shift()
+            }
+
             if (!includes(thisOption.legend.data, data.city)) {
                 thisOption.legend.data.push(`${data.city}`)
                 thisOption.series.push(buildSerie(data.city, data.data, this.state.ct))
@@ -201,7 +194,7 @@ class RadarChart extends Component {
 
             this.setState({
                 loaded: true,
-                radarOption: thisOption,
+                chartOption: thisOption,
                 ct: this.state.ct + 1
             });
         })
@@ -217,7 +210,7 @@ class RadarChart extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         City:
-                        <select name="year" onChange={this.handleCityChange}>
+                        <select name="city" onChange={this.handleCityChange}>
                             {this.generateCity()}
                         </select>
                     </label>
@@ -242,7 +235,7 @@ class RadarChart extends Component {
             </div>
 
             <div className='chart'>
-                <ReactEcharts className='echart' ref='echartsInstance' option={this.state.radarOption} />
+                <ReactEcharts className='echart' ref='echartsInstance' option={this.state.chartOption} />
             </div>
         </div>
         );
