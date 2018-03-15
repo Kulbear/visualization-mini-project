@@ -7,9 +7,3 @@ export const LineChart = () => (
     LineChart Here!
   </div>
 );
-
-export const ScatterChart = () => (
-  <div className='chart-container'>
-    ScatterChart Here!
-  </div>
-);

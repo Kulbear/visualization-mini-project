@@ -11,7 +11,7 @@ parser = reqparse.RequestParser()
 parser.add_argument('city')
 parser.add_argument('year')
 parser.add_argument('month')
-
+parser.add_argument('ctype')
 
 class HelloWorld(Resource):
     def get(self):
@@ -19,8 +19,15 @@ class HelloWorld(Resource):
         city = args['city']
         year = args['year']
         month = args['month']
+        tp = args['ctype']
         try:
-            with open('./data/{}.json'.format(city.lower()), 'r') as f:
+            if tp == 'radar':
+                path = './radar_data/{}.json'.format(city.lower())
+            elif tp == 'scatter':
+                path = './scatter_data/{}.json'.format(city.lower())
+            else:
+                path = '????'
+            with open(path, 'r') as f:
                 data = json.load(f)
             return {
                 'city': city,

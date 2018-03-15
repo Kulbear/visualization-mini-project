@@ -2,8 +2,9 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Charts from '.';
-import { LineChart, ScatterChart } from './components';
+import { LineChart } from './components';
 import RadarChart from './RadarChart'
+import ScatterChart from './ScatterChart'
 
 export default [
   {

@@ -5,111 +5,178 @@ import ReactEcharts from 'echarts-for-react';
 
 import './chart.css'
 
-const getRandomColor = () => {
-    const colorList = []
-    for (let i = 0; i < 20; i++) {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        colorList.push(color);
-    }
-    return colorList
-}
+const schema = [
+  {name: 'date', index: 0, text: 'Date'},
+  {name: 'AQIindex', index: 1, text: 'AQI'},
+  {name: 'PM25', index: 2, text: 'PM2.5'},
+  {name: 'PM10', index: 3, text: 'PM10'},
+  {name: 'CO', index: 4, text: 'CO'},
+  {name: 'NO2', index: 5, text: 'NO2'},
+  {name: 'SO2', index: 6, text: 'SO2'}
+];
 
-const colorList = getRandomColor()
 
-const lineStyle = {
-    normal: {
-        width: 1,
-        opacity: 0.5
-    }
+const itemStyle = {
+  normal: {
+      opacity: 0.8,
+      shadowBlur: 10,
+      shadowOffsetX: 0,
+      shadowOffsetY: 0,
+      shadowColor: 'rgba(0, 0, 0, 0.5)'
+  }
 };
 
 // Whenever add a new city, build a serie and push to options.series
 // need both name and data
 const buildSerie = (city, data, ct) => {
     return {
-        name: city,
-        type: 'radar',
-        lineStyle: lineStyle,
-        data: data,
-        symbol: 'none',
-        itemStyle: {
-            normal: {
-                color: colorList[ct]
-            }
-        },
-        areaStyle: {
-            normal: {
-                opacity: 0.1
-            }
-        }
-    }
+      name: city,
+      type: 'scatter',
+      itemStyle: itemStyle,
+      data: data
+  }
 }
 
 const getOpions = () => {
-    return {
-        backgroundColor: '#ffffff',
-        title: {
-            text: 'AQI - Radar Chart',
-            left: 'center',
-            textStyle: {
+  return {
+    backgroundColor: '#fff',
+    color: ['#f9f9f9', '#fec42c', '#80F1BE', '#3463cc'],
+    legend: {
+        y: 'top',
+        data: [],
+        textStyle: {
+            color: '#000',
+            fontSize: 16
+        }
+    },
+    grid: {
+        x: '10%',
+        x2: 150,
+        y: '18%',
+        y2: '10%'
+    },
+    tooltip: {
+        padding: 10,
+        backgroundColor: '#000',
+        borderColor: '#000',
+        borderWidth: 1,
+        formatter: function (obj) {
+            var value = obj.value;
+            return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                + obj.seriesName + ' ' + value[0] + ': '
+                + value[7]
+                + '</div>'
+                + schema[1].text + '：' + value[1] + '<br>'
+                + schema[2].text + '：' + value[2] + '<br>'
+                + schema[3].text + '：' + value[3] + '<br>'
+                + schema[4].text + '：' + value[4] + '<br>'
+                + schema[5].text + '：' + value[5] + '<br>'
+                + schema[6].text + '：' + value[6] + '<br>';
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Date',
+        nameGap: 16,
+        nameTextStyle: {
+            color: '#000',
+            fontSize: 14
+        },
+        max: 31,
+        splitLine: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#000'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'AQI',
+        nameLocation: 'end',
+        nameGap: 20,
+        nameTextStyle: {
+            color: '#000',
+            fontSize: 16
+        },
+        axisLine: {
+            lineStyle: {
                 color: '#000'
             }
         },
-        legend: {
-            bottom: 5,
-            data: [],
-            itemGap: 20,
+        splitLine: {
+            show: false
+        }
+    },
+    visualMap: [
+        {
+            left: 'right',
+            top: '10%',
+            dimension: 2,
+            min: 0,
+            max: 250,
+            itemWidth: 30,
+            itemHeight: 120,
+            calculable: true,
+            precision: 0.1,
+            text: ['Shape Size: PM2.5'],
+            textGap: 30,
             textStyle: {
-                color: '#000',
-                fontSize: 16
+                color: '#000'
             },
-            selectedMode: 'multiple'
-        },
-        radar: {
-            indicator: [
-                {name: 'AQI', max: 300},
-                {name: 'PM2.5', max: 250},
-                {name: 'PM10', max: 300},
-                {name: 'CO', max: 5},
-                {name: 'NO2', max: 200},
-                {name: 'SO2', max: 100}
-            ],
-            shape: 'circle',
-            splitNumber: 5,
-            name: {
-                textStyle: {
-                    color: '#000'
-                }
+            inRange: {
+                symbolSize: [10, 70]
             },
-            splitLine: {
-                lineStyle: {
-                    color: [
-                        'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.2)',
-                        'rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.4)',
-                        'rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 1)'
-                    ].reverse()
-                }
+            outOfRange: {
+                symbolSize: [10, 70],
+                color: ['rgba(255,255,255,.2)']
             },
-            splitArea: {
-                show: false
-            },
-            axisLine: {
-                lineStyle: {
-                    color: 'rgba(0, 0, 0, 0.5)'
+            controller: {
+                inRange: {
+                    color: ['#000']
+                },
+                outOfRange: {
+                    color: ['#aaa']
                 }
             }
         },
-        series: [
-        ]
-    }
-    
-}
+        {
+            left: 'right',
+            bottom: '5%',
+            dimension: 6,
+            min: 0,
+            max: 50,
+            itemHeight: 120,
+            calculable: true,
+            precision: 0.1,
+            text: ['Saturation: CO2'],
+            textGap: 30,
+            textStyle: {
+                color: '#000'
+            },
+            inRange: {
+                colorLightness: [1, 0.5]
+            },
+            outOfRange: {
+                color: ['rgba(255,255,255,.2)']
+            },
+            controller: {
+                inRange: {
+                    color: ['#000']
+                },
+                outOfRange: {
+                    color: ['#aaa']
+                }
+            }
+        }
+    ],
+    series: []
+  }
+};
 
-class RadarChart extends Component {
+class ScatterChart extends Component {
 
     constructor(props){
         super(props);
@@ -184,7 +251,7 @@ class RadarChart extends Component {
                 city: this.state.city,
                 year: this.state.year,
                 month: this.state.month,
-                ctype: 'radar'
+                ctype: 'scatter'
             }
         })
         .then(response => response.data)
@@ -194,6 +261,11 @@ class RadarChart extends Component {
             }
             const thisOption = {...this.state.radarOption};
             
+            if (thisOption.legend.data.length > 3) {
+              thisOption.legend.data.shift()
+              thisOption.series.shift()
+            }
+
             if (!includes(thisOption.legend.data, data.city)) {
                 thisOption.legend.data.push(`${data.city}`)
                 thisOption.series.push(buildSerie(data.city, data.data, this.state.ct))
@@ -249,5 +321,5 @@ class RadarChart extends Component {
     }
 }
 
-export default RadarChart;
+export default ScatterChart;
   
