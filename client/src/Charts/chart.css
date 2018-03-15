@@ -1,0 +1,23 @@
+.chart-container {
+    width: 800px;
+    display: flex;
+    margin: 20px 20px 20px 20px;
+    border-color: black;
+    border-width: 2px;
+    height: 800px;
+}
+
+.chart-form {
+    /* background-color: blueviolet; */
+    height: 30px;
+    width: 30%;
+}
+
+.chart {
+    height: 100% !important;
+    width: 70%;
+}
+
+.echart{
+    min-height: 450px;
+}

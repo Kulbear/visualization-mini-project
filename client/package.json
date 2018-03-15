@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "echarts": "^4.0.4",
     "echarts-for-react": "^2.0.8",
+    "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",

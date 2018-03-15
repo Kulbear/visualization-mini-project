@@ -5,33 +5,34 @@ import Home from './home';
 import chartRoutes from './Charts/routes';
 import tableRoutes from './Tables/routes';
 
-import './react-router-tabs.css';
-import './styles.css';
+import './css/reset.css';
+
+import './css/react-router-tabs.css';
+import './css/styles.css';
 
 const App = () => (
   <BrowserRouter>
     <div>
       <header>
         <ul className="nav-list">
-          <li className="nav-list__item">
+          <li className="nav-list-item">
             <NavLink exact className="nav-link" to="/">Home</NavLink>
           </li>
-          <li className="nav-list__item">
+          <li className="nav-list-item">
             <NavLink className="nav-link" to="/charts">Charts</NavLink>
-          </li>
-          <li className="nav-list__item">
-            <NavLink className="nav-link" to="/tables">Table</NavLink>
           </li>
         </ul>
       </header>
-      <main>
-        <Switch>
-          <Route exact path="/" component={Home} />
-
-          {RoutesWithSubRoutes(chartRoutes)}
-
-          {RoutesWithSubRoutes(tableRoutes)}
-        </Switch>
+      
+      <main className='container'>
+        <div className='row'>
+          <div className='central'>
+            <Switch className='central'>
+              <Route exact path="/" component={Home} />
+              {RoutesWithSubRoutes(chartRoutes)}
+            </Switch>
+          </div>
+        </div>
       </main>
     </div>
   </BrowserRouter>

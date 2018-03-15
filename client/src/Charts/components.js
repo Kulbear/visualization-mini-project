@@ -1,19 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export const RadarChart = () => (
-  <div>
-    RadarChart Here!
-  </div>
-);
+import './chart.css'
 
 export const LineChart = () => (
-  <div>
+  <div className='chart-container'>
     LineChart Here!
   </div>
 );
 
 export const ScatterChart = () => (
-  <div>
+  <div className='chart-container'>
     ScatterChart Here!
   </div>
 );
