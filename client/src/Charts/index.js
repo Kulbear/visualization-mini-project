@@ -1,6 +1,6 @@
-import React from 'react';
-import { renderRoutes } from 'react-router-config';
-import { NavTab } from 'react-router-tabs';
+import React from "react";
+import { renderRoutes } from "react-router-config";
+import { NavTab } from "react-router-tabs";
 
 export default ({ routes }) => (
   <div>

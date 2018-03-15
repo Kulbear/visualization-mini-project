@@ -1,7 +1,3 @@
-import React from 'react';
+import React from "react";
 
-export const CityTable = () => (
-  <div>
-    CityTable Here!
-  </div>
-);
+export const CityTable = () => <div>CityTable Here!</div>;

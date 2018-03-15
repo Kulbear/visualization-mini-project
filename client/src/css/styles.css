@@ -2,41 +2,33 @@
     font-family: 'Roboto', sans-serif;
     margin: 20px;
 }
-
 header {
     margin-bottom: 30px;
 }
-
 strong {
     font-weight: 700;
 }
-
 .inline-link {
     color: hotpink;
     text-decoration: none;
 }
-
 .nav-list {
     list-style: none;
     padding: 8px;
     background-color: oldlace;
 }
-
 .nav-list-item {
     display: inline;
     color: black;
     padding: 0 10px 10px 0;
 }
-
 .nav-link {
     color: black;
     text-decoration: none;
 }
-
 .nav-link.active {
-    color: hotpink
+    color: hotpink 
 }
-
 .central {
     display: flex;
     justify-content: center;

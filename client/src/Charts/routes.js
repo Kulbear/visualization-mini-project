@@ -1,36 +1,36 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import { Redirect } from "react-router-dom";
 
-import Charts from '.';
-import LineChart from './LineChart';
-import RadarChart from './RadarChart'
-import ScatterChart from './ScatterChart'
+import Charts from ".";
+import LineChart from "./LineChart";
+import RadarChart from "./RadarChart";
+import ScatterChart from "./ScatterChart";
 
 export default [
   {
-    path: '/charts',
+    path: "/charts",
     component: Charts,
     routes: [
       {
-        path: '/charts',
+        path: "/charts",
         exact: true,
-        component: () => <Redirect replace to='/charts/radar' />
+        component: () => <Redirect replace to="/charts/radar" />
       },
       {
-        path: '/charts/radar',
+        path: "/charts/radar",
         component: RadarChart,
-        tab: 'RadarChart'
+        tab: "RadarChart"
       },
       {
-        path: '/charts/line',
+        path: "/charts/line",
         component: LineChart,
-        tab: 'LineChart'
+        tab: "LineChart"
       },
       {
-        path: '/charts/scatter',
+        path: "/charts/scatter",
         component: ScatterChart,
-        tab: 'ScatterChart'
-      },
+        tab: "ScatterChart"
+      }
     ]
   }
 ];
