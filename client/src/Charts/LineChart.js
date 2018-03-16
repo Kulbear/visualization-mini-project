@@ -213,7 +213,7 @@ class LineChart extends Component {
           </form>
         </div>
 
-        <div className="chart">
+        <div className="chart ">
           <ReactEcharts
             className="echart"
             ref="echartsInstance"

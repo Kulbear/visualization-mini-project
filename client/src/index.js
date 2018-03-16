@@ -9,11 +9,14 @@ import "./css/reset.css";
 import "./css/react-router-tabs.css";
 import "./css/styles.css";
 
+
+
 const App = () => (
   <BrowserRouter>
+
     <div>
-      <header>
-        <ul className="nav-list">
+      <header className=  "navbar navbar-inverse">
+        <ul className="nav-list nav navbar-nav">
           <li className="nav-list-item">
             <NavLink exact className="nav-link" to="/">
               Home
@@ -32,7 +35,7 @@ const App = () => (
         </ul>
       </header>
 
-      <main className="container">
+      <main className="container ">
         <div className="row">
           <div className="central">
             <Switch className="central">

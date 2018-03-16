@@ -14,8 +14,7 @@ strong {
 }
 .nav-list {
     list-style: none;
-    padding: 8px;
-    background-color: oldlace;
+
 }
 .nav-list-item {
     display: inline;
@@ -34,4 +33,28 @@ strong {
     justify-content: center;
     flex-direction: row;
     width: 100%;
+}
+.background{
+
+}
+.title{
+color: #E74C3C; 
+font-family: 'Raleway', sans-serif; 
+font-size: 50px; 
+font-weight: 800; 
+line-height: 72px; 
+margin: 0 0 24px; 
+text-align: center; 
+text-transform: uppercase; 
+}
+.pollution{
+  background-repeat:  no-repeat;
+  background-size: cover;
+}
+.home p { 
+    color: black; 
+    font-size: 25px; 
+}
+mark {
+background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
 }

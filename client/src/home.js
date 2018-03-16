@@ -1,22 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Img from 'react-image'
+import "./css/styles.css";
+
 
 export default props => (
-  <div>
-    <h2>Welcome to our air quality demo station!</h2>
+  <div className='home'>
+    <h2 className='title'>Welcome to our air quality demo station!</h2>
+    <Img  className= "pollution central" src="https://nelson.wisc.edu/sage/images/banner_airquality.jpg"/>
+    <br></br>
+    <br></br>
+    <br></br>
     <p>
-      You can view the air quality data of China mainland here by table mode and
-      chart mode!
+      View the air quality data of <mark>China mainland</mark> here by table mode and
+      chart mode. Please choose from the tab above.
     </p>
-    <p>
-      <Link className="inline-link" to="/charts">
-        Charts
-      </Link>{" "}
-    </p>
-    <p>
-      <Link className="inline-link" to="/tables">
-        Tables
-      </Link>{" "}
-    </p>
+
   </div>
+    
 );
