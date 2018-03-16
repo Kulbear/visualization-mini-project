@@ -157,14 +157,6 @@ class LineChart extends Component {
     console.log(e.target.value);
   };
 
-  handleClearAll = e => {
-    e.preventDefault();
-    this.setState({
-      chartOption: getOpions()
-    });
-    this.forceUpdate();
-  };
-
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
@@ -201,19 +193,23 @@ class LineChart extends Component {
       <div className="chart-container">
         <div className="chart-form">
           <form onSubmit={this.handleSubmit}>
-            <label>
-              City:
-              <select name="city" onChange={this.handleCityChange}>
+            <div className="form-group">
+              <label>City:</label>
+              <select
+                className="form-control"
+                name="city"
+                onChange={this.handleCityChange}
+              >
                 {this.generateCity()}
               </select>
-            </label>
-            <br />
-            <input
-              type="button"
-              value="Clear All"
-              onClick={this.handleClearAll}
-            />
-            <input type="submit" value="Show City Data!" />
+            </div>
+            <p>
+              <input
+                className="btn btn-success"
+                type="submit"
+                value="Show City Data"
+              />
+            </p>
           </form>
         </div>
 

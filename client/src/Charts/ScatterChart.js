@@ -282,7 +282,7 @@ class ScatterChart extends Component {
       chartOption: getOpions(),
       ct: 0
     });
-    this.forceUpdate();
+    window.location.reload();
   };
 
   handleSubmit = e => {
@@ -332,33 +332,50 @@ class ScatterChart extends Component {
       <div className="chart-container">
         <div className="chart-form">
           <form onSubmit={this.handleSubmit}>
-            <label>
-              City:
-              <select name="city" onChange={this.handleCityChange}>
+            <div className="form-group">
+              <label>City:</label>
+              <select
+                className="form-control"
+                name="city"
+                onChange={this.handleCityChange}
+              >
                 {this.generateCity()}
               </select>
-            </label>
-            <br />
-            <label>
-              Year:
-              <select name="year" onChange={this.handleYearChange}>
+            </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <select
+                className="form-control"
+                name="year"
+                onChange={this.handleYearChange}
+              >
                 {this.generateYear()}
               </select>
-            </label>
-            <br />
-            <label>
-              Month:
-              <select name="month" onChange={this.handleMonthChange}>
+            </div>
+            <div className="form-group">
+              <label>Month:</label>
+              <select
+                className="form-control"
+                name="month"
+                onChange={this.handleMonthChange}
+              >
                 {this.generateMonth()}
               </select>
-            </label>
-            <br />
-            <input
-              type="button"
-              value="Clear All"
-              onClick={this.handleClearAll}
-            />
-            <input type="submit" value="Add City!" />
+            </div>
+            <p>
+              <input
+                className="btn btn-warning"
+                type="button"
+                value="Clear All"
+                onClick={this.handleClearAll}
+              />
+              <span> </span>
+              <input
+                className="btn btn-success"
+                type="submit"
+                value="Add City"
+              />
+            </p>
           </form>
         </div>
 

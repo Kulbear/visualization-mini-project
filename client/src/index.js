@@ -20,6 +20,11 @@ const App = () => (
             </NavLink>
           </li>
           <li className="nav-list-item">
+            <NavLink className="nav-link" to="/tables">
+              Tables
+            </NavLink>
+          </li>
+          <li className="nav-list-item">
             <NavLink className="nav-link" to="/charts">
               Charts
             </NavLink>
@@ -32,6 +37,7 @@ const App = () => (
           <div className="central">
             <Switch className="central">
               <Route exact path="/" component={Home} />
+              {RoutesWithSubRoutes(tableRoutes)}
               {RoutesWithSubRoutes(chartRoutes)}
             </Switch>
           </div>

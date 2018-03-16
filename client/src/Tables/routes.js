@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 import Tables from ".";
-import { CityTable } from "./components";
+import CityTable from "./CityTable";
 
 export default [
   {
